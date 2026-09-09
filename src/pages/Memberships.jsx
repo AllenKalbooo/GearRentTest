@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { formatPeso, membershipTiers } from '../mockData';
+import { isGearProvider } from '../providerAccess';
 import './Memberships.css';
 
 export default function Memberships() {
@@ -12,13 +13,16 @@ export default function Memberships() {
   // them as having an active account.
   const currentUser = pendingSignup ? null : (isAuthenticated ? user : null);
   const currentTier = currentUser?.tier || 'Gear Renter';
+  const canAccessProvider = isGearProvider(currentUser);
   const [selectedTier, setSelectedTier] = useState(
     () => currentUser
       ? membershipTiers.find((tier) => tier.name === currentTier)?.id || null
-      : null
+      : 'basic'
   );
 
   const chooseMembership = (tier) => {
+    if (tier.id === 'provider' && !canAccessProvider) return;
+
     setSelectedTier(tier.id);
 
     if (isAuthenticated && currentUser) {
@@ -91,8 +95,13 @@ export default function Memberships() {
               className={`btn ${selectedTier === tier.id ? 'btn-primary' : 'btn-outline'} btn-block`}
               onClick={() => chooseMembership(tier)}
               aria-pressed={selectedTier === tier.id}
+              disabled={tier.id === 'provider' && !canAccessProvider}
             >
-              {selectedTier === tier.id ? 'Selected' : tier.cta}
+              {tier.id === 'provider' && !canAccessProvider
+                ? 'Currently Locked'
+                : selectedTier === tier.id
+                  ? 'Selected'
+                  : tier.cta}
             </button>
           </div>
         ))}
