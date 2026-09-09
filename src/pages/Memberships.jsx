@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { formatPeso, membershipTiers } from '../mockData';
-import { isGearProvider } from '../providerAccess';
 import './Memberships.css';
 
 export default function Memberships() {
@@ -13,7 +12,7 @@ export default function Memberships() {
   // them as having an active account.
   const currentUser = pendingSignup ? null : (isAuthenticated ? user : null);
   const currentTier = currentUser?.tier || 'Gear Renter';
-  const canAccessProvider = isGearProvider(currentUser);
+  const canAccessProvider = Boolean(isAuthenticated && currentUser);
   const [selectedTier, setSelectedTier] = useState(
     () => currentUser
       ? membershipTiers.find((tier) => tier.name === currentTier)?.id || null

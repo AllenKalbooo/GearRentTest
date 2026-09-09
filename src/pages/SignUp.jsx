@@ -5,7 +5,7 @@ import './Auth.css';
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { accountExists, setPendingSignup } = useAuth();
+  const { accountExists, createAccount } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e) => {
@@ -19,12 +19,19 @@ export default function SignUp() {
     }
 
     setErrorMessage('');
-    setPendingSignup({
+    const created = createAccount({
       name: formData.get('name').trim(),
       email,
       password: formData.get('password'),
+      tier: 'Gear Renter',
     });
-    navigate('/memberships');
+
+    if (!created) {
+      setErrorMessage('Unable to create the account. Please try again.');
+      return;
+    }
+
+    navigate('/catalog');
   };
 
   return (
@@ -68,7 +75,7 @@ export default function SignUp() {
             {errorMessage && <p className="auth-error" role="alert">{errorMessage} <Link to="/signin">Log in</Link></p>}
 
             <button type="submit" className="btn btn-primary btn-block auth-submit">
-              Choose Membership →
+              Create Account →
             </button>
 
             <p className="auth-footer-line">
