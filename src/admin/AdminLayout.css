@@ -353,6 +353,34 @@
   overflow-x: hidden;
 }
 
+:root[data-theme='light'] .admin-shell {
+  --admin-line: var(--border);
+  --admin-surface: var(--surface);
+  background: var(--bg);
+}
+
+:root[data-theme='light'] .admin-topbar,
+:root[data-theme='light'] .admin-sidebar,
+:root[data-theme='light'] .admin-notification-panel {
+  background: var(--surface);
+  backdrop-filter: none;
+}
+
+:root[data-theme='light'] .admin-nav a:hover,
+:root[data-theme='light'] .admin-nav-link:hover,
+:root[data-theme='light'] .admin-icon-btn:hover {
+  background: var(--surface-alt);
+}
+
+:root[data-theme='light'] .admin-nav a.active {
+  background: var(--surface-alt);
+  border-color: var(--border);
+}
+
+:root[data-theme='light'] .admin-add-btn {
+  box-shadow: var(--shadow);
+}
+
 @media (max-width: 980px) {
   .admin-search { display: none; }
   .admin-brand { width: 200px; }

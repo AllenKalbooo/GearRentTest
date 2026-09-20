@@ -15,7 +15,6 @@ export default function Footer() {
           <Link to="/rental-agreement">Rental Agreement</Link>
           <Link to="/contact">Contact Us</Link>
           <Link to="/locations">Locations</Link>
-          <Link to="/admin">Admin</Link>
         </div>
       </div>
     </footer>

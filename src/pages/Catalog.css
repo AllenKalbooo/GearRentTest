@@ -39,6 +39,18 @@
   color: var(--text);
 }
 
+:root[data-theme='light'] .filter-checkbox {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0.3rem 0.45rem;
+}
+
+:root[data-theme='light'] .filter-checkbox:has(input:checked) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .filter-checkbox input {
   accent-color: var(--accent);
 }
@@ -145,6 +157,16 @@
 .catalog-ad-dots button.active {
   background: var(--accent);
   transform: scale(1.35);
+}
+
+:root[data-theme='light'] .catalog-ad-controls > button {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+:root[data-theme='light'] .catalog-ad-dots button {
+  background: var(--border);
 }
 
 .catalog-featured {
@@ -263,7 +285,7 @@
 .catalog-page-number.active {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent, #fff);
 }
 
 @media (max-width: 980px) {

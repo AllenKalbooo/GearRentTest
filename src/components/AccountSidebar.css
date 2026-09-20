@@ -42,6 +42,17 @@
   border: 1px solid var(--border);
 }
 
+:root[data-theme='light'] .sidebar-nav a.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+:root[data-theme='light'] .sidebar-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 @media (max-width: 900px) {
   .account-sidebar {
     width: 100%;

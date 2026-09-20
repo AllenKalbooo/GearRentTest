@@ -13,6 +13,11 @@
   border-color: var(--border-hover);
 }
 
+:root[data-theme='light'] .product-card-media,
+:root[data-theme='light'] .product-hover-preview-image {
+  background: var(--surface-alt);
+}
+
 .product-card-media {
   overflow: hidden;
   border-radius: 3px 3px 0 0;
@@ -55,12 +60,17 @@
 
 .status-available {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent, #fff);
 }
 
 .status-booked {
   background: #2a2a2a;
   color: var(--text-muted);
+}
+
+:root[data-theme='light'] .status-booked {
+  background: var(--surface-alt);
+  color: var(--text-secondary);
 }
 
 .product-card-body {
@@ -130,6 +140,11 @@
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.55);
   animation: product-preview-in 0.18s ease-out;
   pointer-events: none;
+}
+
+:root[data-theme='light'] .product-hover-preview {
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .product-hover-preview-header {

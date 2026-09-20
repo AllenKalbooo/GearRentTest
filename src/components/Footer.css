@@ -36,6 +36,25 @@
   color: var(--text-muted);
 }
 
+:root[data-theme='light'] .site-footer {
+  background: var(--ink);
+  border-top-color: var(--ink);
+  color: var(--on-ink);
+}
+
+:root[data-theme='light'] .footer-logo {
+  color: var(--accent);
+}
+
+:root[data-theme='light'] .footer-copy,
+:root[data-theme='light'] .footer-links {
+  color: var(--on-ink-muted);
+}
+
+:root[data-theme='light'] .footer-links a:hover {
+  color: var(--on-ink);
+}
+
 .footer-links a:hover {
   color: var(--text);
 }

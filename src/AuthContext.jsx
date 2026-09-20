@@ -6,6 +6,8 @@ const AUTH_KEY = 'gearRentAuthenticated';
 const USER_KEY = 'gearRentUser';
 const ACCOUNTS_KEY = 'gearRentAccounts';
 const PENDING_SIGNUP_KEY = 'gearRentPendingSignup';
+const ADMIN_EMAIL = 'admin@gearrent.com';
+const ADMIN_PASSWORD = 'Admin@123';
 
 function normalizeEmail(email) {
   return typeof email === 'string' ? email.trim().toLowerCase() : '';
@@ -99,6 +101,15 @@ export function AuthProvider({ children }) {
 
   const authenticate = useCallback((email, password) => {
     const normalizedEmail = normalizeEmail(email);
+    if (normalizedEmail === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      return persistAccount({
+        email: ADMIN_EMAIL,
+        password: ADMIN_PASSWORD,
+        name: 'Gear Rent Admin',
+        role: 'admin',
+      });
+    }
+
     const account = readAccounts().find(
       (storedAccount) => normalizeEmail(storedAccount.email) === normalizedEmail
     );
@@ -182,6 +193,7 @@ export function AuthProvider({ children }) {
     updateUser,
     setPendingSignup,
     clearPendingSignup,
+    isAdmin: user?.role === 'admin',
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

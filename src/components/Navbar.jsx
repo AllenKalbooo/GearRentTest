@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { useCart } from '../CartContext';
 import { useNotifications } from '../NotificationContext';
+import { useTheme } from '../ThemeContext';
 import './Navbar.css';
 
 export default function Navbar() {
   const { count } = useCart();
   const { notifications, unreadCount, markAllRead, clearAllNotifications } = useNotifications();
   const { isAuthenticated, user, signOut } = useAuth();
+  const { isLightTheme, toggleTheme } = useTheme();
   const navigate = useNavigate();
-  const [isLightTheme, setIsLightTheme] = useState(() => window.localStorage.getItem('gearRentTheme') === 'light');
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = isLightTheme ? 'light' : 'dark';
-    window.localStorage.setItem('gearRentTheme', isLightTheme ? 'light' : 'dark');
-  }, [isLightTheme]);
 
   const userName = typeof user?.name === 'string' && user.name.trim() ? user.name.trim() : 'Member';
   const userInitials = userName
@@ -92,7 +88,7 @@ export default function Navbar() {
             className="navbar-theme-toggle"
             aria-label={isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
             title={isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'}
-            onClick={() => setIsLightTheme((lightTheme) => !lightTheme)}
+            onClick={toggleTheme}
           >
             <span aria-hidden="true">{isLightTheme ? '☾' : '☀'}</span>
           </button>

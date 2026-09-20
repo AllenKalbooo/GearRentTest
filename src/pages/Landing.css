@@ -149,6 +149,31 @@
   transform: scale(1.35);
 }
 
+:root[data-theme='light'] .hero-slide-controls > button {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+:root[data-theme='light'] .hero::after {
+  background: linear-gradient(90deg, rgba(20, 17, 15, 0.85), transparent);
+}
+
+:root[data-theme='light'] .hero-copy,
+:root[data-theme='light'] .hero-copy h1,
+:root[data-theme='light'] .hero-copy p,
+:root[data-theme='light'] .hero-slide-caption {
+  color: var(--on-ink);
+}
+
+:root[data-theme='light'] .hero-copy h1 .accent {
+  color: var(--on-ink);
+}
+
+:root[data-theme='light'] .hero-slide-dots button {
+  background: var(--border);
+}
+
 .categories-section {
   margin-top: 4.5rem;
 }

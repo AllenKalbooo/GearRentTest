@@ -6,6 +6,10 @@
   background: radial-gradient(circle at 70% 20%, rgba(224, 51, 42, 0.06), transparent 60%);
 }
 
+:root[data-theme='light'] .auth-page {
+  background: var(--bg);
+}
+
 .auth-layout {
   display: grid;
   grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 420px);
@@ -137,6 +141,10 @@
 .tier-option.selected {
   border-color: var(--accent);
   background: rgba(224, 51, 42, 0.08);
+}
+
+:root[data-theme='light'] .tier-option.selected {
+  background: var(--surface-alt);
 }
 
 .checkbox-row {

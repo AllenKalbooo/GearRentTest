@@ -8,7 +8,29 @@
 }
 
 :root[data-theme='light'] .navbar {
-  background: rgba(164, 165, 161, 0.94);
+  background: var(--ink);
+  backdrop-filter: none;
+}
+
+:root[data-theme='light'] .navbar-logo {
+  color: var(--accent);
+}
+
+:root[data-theme='light'] .navbar-links a,
+:root[data-theme='light'] .navbar-cart,
+:root[data-theme='light'] .navbar-login,
+:root[data-theme='light'] .navbar-signout,
+:root[data-theme='light'] .navbar-user-name {
+  color: var(--on-ink-muted);
+}
+
+:root[data-theme='light'] .navbar-links a:hover,
+:root[data-theme='light'] .navbar-links a.active,
+:root[data-theme='light'] .navbar-cart:hover,
+:root[data-theme='light'] .navbar-login:hover,
+:root[data-theme='light'] .navbar-signout:hover,
+:root[data-theme='light'] .navbar-user:hover .navbar-user-name {
+  color: var(--on-ink);
 }
 
 .navbar-inner {
@@ -50,6 +72,12 @@
   border-bottom-color: var(--accent-soft);
 }
 
+:root[data-theme='light'] .navbar-links a.active {
+  padding: 0 0 4px;
+  border-bottom-color: var(--accent);
+  background: transparent;
+}
+
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -80,7 +108,7 @@
   padding: 0 0.3rem;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent, #fff);
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 800;
@@ -105,6 +133,27 @@
   background: rgba(224, 51, 42, 0.08);
 }
 
+:root[data-theme='light'] .navbar-user {
+  background: var(--ink);
+  border-color: var(--border);
+  color: var(--on-ink);
+}
+
+:root[data-theme='light'] .navbar-user:hover {
+  background: var(--ink);
+  border-color: var(--accent);
+}
+
+:root[data-theme='light'] .navbar-user-avatar {
+  color: var(--on-accent);
+}
+
+:root[data-theme='light'] .navbar-theme-toggle,
+:root[data-theme='light'] .navbar-notification-toggle {
+  border-color: var(--border);
+  color: var(--on-ink-muted);
+}
+
 .navbar-user-avatar {
   width: 1.8rem;
   height: 1.8rem;
@@ -114,7 +163,7 @@
   border: 1px solid var(--accent);
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent, #fff);
   color: var(--accent-soft);
   font-size: 0.65rem;
   font-weight: 700;
@@ -244,6 +293,11 @@
   border: 1px solid var(--border);
   background: var(--bg-card);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.24);
+}
+
+:root[data-theme='light'] .navbar-notification-panel {
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .navbar-notification-heading {

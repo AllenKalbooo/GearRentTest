@@ -77,6 +77,11 @@
   background: rgba(224, 51, 42, 0.11);
 }
 
+:root[data-theme='light'] .rental-history-active-row,
+:root[data-theme='light'] .rental-history-active-row:hover {
+  background: var(--surface-alt);
+}
+
 .rental-history-past-row {
   border-color: var(--border);
 }

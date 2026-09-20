@@ -164,6 +164,16 @@
   border-color: var(--accent);
 }
 
+:root[data-theme='light'] .cart-product-modal-backdrop {
+  background: var(--surface-alt);
+}
+
+:root[data-theme='light'] .cart-item-media,
+:root[data-theme='light'] .cart-product-modal-hero,
+:root[data-theme='light'] .cart-product-modal-thumbnails button {
+  background: var(--surface-alt);
+}
+
 .cart-product-modal-thumbnails img {
   width: 100%;
   height: 100%;

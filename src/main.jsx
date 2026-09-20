@@ -7,19 +7,22 @@ import { AuthProvider } from './AuthContext.jsx';
 import { CartProvider } from './CartContext.jsx';
 import { ProviderProvider } from './ProviderContext.jsx';
 import { NotificationProvider } from './NotificationContext.jsx';
+import { ThemeProvider } from './ThemeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <CartProvider>
-          <ProviderProvider>
-            <NotificationProvider>
-              <App />
-            </NotificationProvider>
-          </ProviderProvider>
-        </CartProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <CartProvider>
+            <ProviderProvider>
+              <NotificationProvider>
+                <App />
+              </NotificationProvider>
+            </ProviderProvider>
+          </CartProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
 );
