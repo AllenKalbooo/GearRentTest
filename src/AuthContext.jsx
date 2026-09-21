@@ -88,6 +88,16 @@ export function AuthProvider({ children }) {
     return accountUser;
   }, []);
 
+  const login = useCallback((userData) => persistAccount(userData), [persistAccount]);
+
+  const loginWithGoogle = useCallback((userData) => {
+    const normalizedEmail = normalizeEmail(userData.email);
+    const existingAccount = readAccounts().find(
+      (account) => normalizeEmail(account.email) === normalizedEmail
+    );
+    return persistAccount(existingAccount || userData);
+  }, [persistAccount]);
+
   const accountExists = useCallback((email) => {
     const normalizedEmail = normalizeEmail(email);
     return readAccounts().some((account) => normalizeEmail(account.email) === normalizedEmail);
@@ -150,6 +160,10 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(false);
   }, []);
 
+  const logout = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
   // Merges and persists partial updates to the signed-in user's profile.
   const updateUser = useCallback((updates) => {
     setUser((prev) => {
@@ -188,8 +202,11 @@ export function AuthProvider({ children }) {
     accountExists,
     createAccount,
     authenticate,
+    login,
+    loginWithGoogle,
     creditAccount,
     signOut,
+    logout,
     updateUser,
     setPendingSignup,
     clearPendingSignup,

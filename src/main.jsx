@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import './index.css';
 import App from './App.jsx';
 import { AuthProvider } from './AuthContext.jsx';
@@ -11,18 +12,20 @@ import { ThemeProvider } from './ThemeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <AuthProvider>
-          <CartProvider>
-            <ProviderProvider>
-              <NotificationProvider>
-                <App />
-              </NotificationProvider>
-            </ProviderProvider>
-          </CartProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <CartProvider>
+              <ProviderProvider>
+                <NotificationProvider>
+                  <App />
+                </NotificationProvider>
+              </ProviderProvider>
+            </CartProvider>
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   </StrictMode>,
 );

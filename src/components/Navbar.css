@@ -169,6 +169,11 @@
   font-weight: 700;
 }
 
+.navbar-user-avatar-image {
+  object-fit: cover;
+  background: var(--bg-raised);
+}
+
 .navbar-user-name {
   color: var(--text-muted);
   transition: color 0.15s ease;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { googleLogout } from '@react-oauth/google';
 import { useAuth } from '../AuthContext';
 import { useCart } from '../CartContext';
 import { useNotifications } from '../NotificationContext';
@@ -9,7 +10,7 @@ import './Navbar.css';
 export default function Navbar() {
   const { count } = useCart();
   const { notifications, unreadCount, markAllRead, clearAllNotifications } = useNotifications();
-  const { isAuthenticated, user, signOut } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const { isLightTheme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -23,7 +24,8 @@ export default function Navbar() {
     .toUpperCase();
 
   const handleSignOut = () => {
-    signOut();
+    googleLogout();
+    logout();
     navigate('/');
   };
 
@@ -94,7 +96,11 @@ export default function Navbar() {
           </button>
           {isAuthenticated && (
             <Link to="/profile" className="navbar-user" aria-label={`View ${userName}'s profile`}>
-              <span className="navbar-user-avatar" aria-hidden="true">{userInitials}</span>
+              {user.picture ? (
+                <img className="navbar-user-avatar navbar-user-avatar-image" src={user.picture} alt="" />
+              ) : (
+                <span className="navbar-user-avatar" aria-hidden="true">{userInitials}</span>
+              )}
               <span className="navbar-user-name">{userName}</span>
             </Link>
           )}
@@ -104,7 +110,7 @@ export default function Navbar() {
           </Link>
           {isAuthenticated ? (
             <button type="button" className="navbar-signout" onClick={handleSignOut}>
-              Sign Out
+              Logout
             </button>
           ) : (
             <>

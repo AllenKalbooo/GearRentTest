@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 import './Auth.css';
 
 export default function SignUp() {
@@ -14,7 +15,7 @@ export default function SignUp() {
     const email = formData.get('email').trim().toLowerCase();
 
     if (accountExists(email)) {
-      setErrorMessage('An account already exists for this email. Please log in instead.');
+      setErrorMessage('An account with this email already exists.');
       return;
     }
 
@@ -64,7 +65,14 @@ export default function SignUp() {
 
             <div className="field">
               <label htmlFor="email">Email Address</label>
-              <input name="email" id="email" type="email" placeholder="jane@studio.com" required />
+              <input
+                name="email"
+                id="email"
+                type="email"
+                placeholder="jane@studio.com"
+                onChange={() => setErrorMessage('')}
+                required
+              />
             </div>
 
             <div className="field">
@@ -72,11 +80,18 @@ export default function SignUp() {
               <input name="password" id="password" type="password" placeholder="••••••••" required />
             </div>
 
-            {errorMessage && <p className="auth-error" role="alert">{errorMessage} <Link to="/signin">Log in</Link></p>}
+            {errorMessage && (
+              <p className="auth-error" role="alert">
+                {errorMessage} <Link to="/signin">Log In instead</Link>
+              </p>
+            )}
 
             <button type="submit" className="btn btn-primary btn-block auth-submit">
               Create Account →
             </button>
+
+            <div className="auth-divider"><span>OR</span></div>
+            <GoogleLoginButton text="signup_with" />
 
             <p className="auth-footer-line">
               Already have an account? <Link to="/signin">Log In</Link>

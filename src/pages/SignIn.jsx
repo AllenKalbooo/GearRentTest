@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 import './Auth.css';
 
 export default function SignIn() {
@@ -91,6 +92,9 @@ export default function SignIn() {
             <button type="submit" className="btn btn-primary btn-block auth-submit">
               Authenticate →
             </button>
+
+            <div className="auth-divider"><span>OR</span></div>
+            <GoogleLoginButton text="signin_with" />
 
             <p className="auth-footer-line">
               No account? <Link to="/signup">Request Access</Link>
